@@ -26,3 +26,20 @@ def decrypt_file(filename, key):
     with open(filename.replace(".enc", ""), "wb") as file:
         file.write(decrypted_data)
     print("File decrypted successfully!")
+
+if __name__ == "__main__":
+    choice = input("Do you want to (G)enerate a key, (E)ncrypt a file, or (D)ecrypt a file? ").strip().upper()
+    
+    if choice == "G":
+        generate_key()
+        print("Encryption key generated and saved as 'secret.key'.")
+    elif choice == "E":
+        key = load_key()
+        filename = input("Enter the filename to encrypt: ")
+        encrypt_file(filename, key)
+    elif choice == "D":
+        key = load_key()
+        filename = input("Enter the filename to decrypt: ")
+        decrypt_file(filename, key)
+    else:
+        print("Invalid choice. Exiting.")
